@@ -23,11 +23,11 @@ public class UserDaoImpl implements UserDao{
 			ResultSet resultSet=prepareStatement.executeQuery();
 			if(resultSet.next()){
 				user=new User();
-				user.setName(resultSet.getString("name"));
-				user.setPwd(resultSet.getString("pwd"));
-				user.setLoginName(resultSet.getString("loginname"));
-				user.setRole(resultSet.getString("role"));
-				user.setUuid(resultSet.getString("uuid"));
+				user.setUserip_name(resultSet.getString("name"));
+				user.setUserip_pwd(resultSet.getString("pwd"));
+				user.setUserip_realname(resultSet.getString("loginname"));
+				//user.setRole(resultSet.getString("role"));
+				//user.setUuid(resultSet.getString("uuid"));
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -56,11 +56,11 @@ public class UserDaoImpl implements UserDao{
 		try {
 			connection=JDBCTool.getConnection();
 			PreparedStatement prepareStatement=connection.prepareStatement(sql);
-			prepareStatement.setString(1, user.getLoginName());
-			prepareStatement.setString(2, user.getName());
-			prepareStatement.setString(3, user.getPwd());
-			prepareStatement.setString(4, user.getRole());
-			prepareStatement.setString(5, user.getUuid());
+			prepareStatement.setString(1, user.getUserip_name());
+			prepareStatement.setString(2, user.getUserip_realname());
+			prepareStatement.setString(3, user.getUserip_pwd());
+			//prepareStatement.setString(4, user.getRole());
+			//prepareStatement.setString(5, user.getUuid());
 			i=prepareStatement.executeUpdate();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

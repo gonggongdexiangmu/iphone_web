@@ -5,44 +5,49 @@ package vo;
  *
  */
 public class User {
-	private String uuid;
-	private String name;
-	private String pwd;
-	private String role;
-	private String loginName;
-	public String getLoginName() {
-		return loginName;
+	private String userip_id;
+	private String userip_name;
+	private String userip_realname;
+	private String userip_pwd;
+	private String userip_right;
+	private String collections_id;
+	
+	public String getUserip_id() {
+		return userip_id;
 	}
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+	public void setUserip_id(String userip_id) {
+		this.userip_id = userip_id;
 	}
-	public String getUuid() {
-		return uuid;
+	public String getUserip_name() {
+		return userip_name;
 	}
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
+	public void setUserip_name(String userip_name) {
+		this.userip_name = userip_name;
 	}
-	public String getName() {
-		return name;
+	public String getUserip_realname() {
+		return userip_realname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserip_realname(String userip_realname) {
+		this.userip_realname = userip_realname;
 	}
-	public String getPwd() {
-		return pwd;
+	public String getUserip_pwd() {
+		return userip_pwd;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setUserip_pwd(String userip_pwd) {
+		this.userip_pwd = userip_pwd;
 	}
-	public String getRole() {
-		return role;
+	public String getUserip_right() {
+		return userip_right;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setUserip_right(String userip_right) {
+		this.userip_right = userip_right;
+	}
+	public String getCollections_id() {
+		return collections_id;
+	}
+	public void setCollections_id(String collections_id) {
+		this.collections_id = collections_id;
 	}
 	
 	
-	public String toString(){
-		return name+","+pwd+","+role+","+uuid;
-	}
 }
