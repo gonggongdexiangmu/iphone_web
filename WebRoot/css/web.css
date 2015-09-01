@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+/*Reset*/
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,label,dl,dt,dd,fieldset,img {margin:0;padding:0;border:0;list-style:none}
+body{ background:#f4f4f4; word-wrap: break-word;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+table{border-collapse:collapse;border-spacing:0}
+table,th,td{margin:0;padding:0;}
+body,fieldset,th,td,select,input,textarea,button {font-size:12px;font-family:"STHeiti","Microsoft Yahei","微软雅黑","Simsun";}
+select,input {vertical-align:middle}
+button{ outline:none;}
+input,textarea{ resize:none; outline:none;}
+cite,em {font-style:normal}
+a {text-decoration:none;outline:none; color:#5fbaf3;}
+a:hover {text-decoration:none;}
+a:active{ background-color:transparent;}
+label {cursor:pointer;}
+.clearfix:after{ content:"."; clear:both; display:block; height:0; visibility:hidden; overflow:hidden; line-height:0;}
+.clearfix{zoom:1;}
+.none{ display:none!important; }
+.hide{ display:none;}
+
+/*header*/
+body{ padding-top:60px; background:#eee;}
+.header{box-shadow: 0 2px 4px rgba(0,0,0,.02);margin-bottom:20px; position: fixed; left:0; top:0; right:0; z-index:10; opacity:0.98; background:#fff; min-width:1060px;}
+.header .header_wrap{ width:1060px; margin:0 auto;-webkit-transform-style:preserve-3d; }
