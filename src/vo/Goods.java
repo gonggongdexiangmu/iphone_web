@@ -1,6 +1,9 @@
 package vo;
 
-public class Goods {
+import java.io.Serializable;
+import java.util.List;
+
+public class Goods implements Serializable{
 	
 	String goods_id;//物品id
 	String goods_name;//物品名字
@@ -8,8 +11,10 @@ public class Goods {
 	String label_id;//标签id
 	String zan;//点赞次数
 	String goods_text;//描述文本
-	String goods_ishead;//是否放在头部
+	boolean goods_ishead;//是否放在头部
 	String goods_state;//状态所属
+	String pohto_url;//图片路径
+	String video_url;//视频路径
 	
 	public String getGoods_id() {
 		return goods_id;
@@ -47,10 +52,11 @@ public class Goods {
 	public void setGoods_text(String goods_text) {
 		this.goods_text = goods_text;
 	}
-	public String getGoods_ishead() {
+	
+	public boolean isGoods_ishead() {
 		return goods_ishead;
 	}
-	public void setGoods_ishead(String goods_ishead) {
+	public void setGoods_ishead(boolean goods_ishead) {
 		this.goods_ishead = goods_ishead;
 	}
 	public String getGoods_state() {
@@ -58,6 +64,18 @@ public class Goods {
 	}
 	public void setGoods_state(String goods_state) {
 		this.goods_state = goods_state;
+	}
+	public String getPohto_url() {
+		return pohto_url;
+	}
+	public void setPohto_url(String string) {
+		this.pohto_url = string;
+	}
+	public String getVideo_url() {
+		return video_url;
+	}
+	public void setVideo_url(String video_url) {
+		this.video_url = video_url;
 	}
 	
 	

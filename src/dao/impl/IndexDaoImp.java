@@ -26,13 +26,21 @@ public class IndexDaoImp implements IndexDao{
 			connection=JDBCTool.getConnection();
 			PreparedStatement pres=connection.prepareStatement(sql);
 			ResultSet result=pres.executeQuery();
-			if(result.next()){
+			
+			while(result.next()){
+				int j=0;
 				Goods g=new Goods();
 				g.setGoods_id(result.getString("goods_id"));
 				g.setGoods_name(result.getString("goods_name"));
 				g.setGoods_text(result.getString("goods_text"));
 				g.setCreate_time(result.getString("create_time"));
-				g.setGoods_ishead(result.getString("goods_ishead"));
+				String h=result.getString("goods_ishead");
+				if("y".equals(h)){
+					g.setGoods_ishead(true);
+					
+				}else if("n".equals(h)){
+					g.setGoods_ishead(false);
+				}
 				g.setGoods_state(result.getString("goods_state"));
 				g.setZan(result.getString("zan"));
 				String labelid=result.getString("label_id");
@@ -42,20 +50,21 @@ public class IndexDaoImp implements IndexDao{
 					labelName=labelName+" "+findLabelName(ids[0]);
 					
 				}
+				g.setLabel_id(labelName);
+				// ◊“≥Õº∆¨¬∑æ∂¥¶¿Ì
+				List <String>list=findImageUrl(result.getString("goods_id"));
+				
+				g.setPohto_url(list.get(0));
+				
 				Goodslist.add(g);
+				
+				
 			}
 			
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-		}
+		} 
 		return Goodslist;
 	}
 	/**
@@ -67,29 +76,53 @@ public class IndexDaoImp implements IndexDao{
 		Connection connection=null;
 		PreparedStatement pres;
 		try {
+			connection=JDBCTool.getConnection();
 			pres = connection.prepareStatement(sql);
 			pres.setString(1, id);
-			try {
-				connection=JDBCTool.getConnection();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			ResultSet result=pres.executeQuery();
-			if(result.next()){
+			while(result.next()){
 				labelName=result.getString("label_name");
 				
 				
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
 		}
 		return labelName;
+	}
+	/**
+	 * ’“Õº∆¨
+	 */
+	public List findImageUrl(String goodsId) {
+		String sql="select * from photo where goods_id=?";
+		Connection connection=null;
+		PreparedStatement pres;
+		String image_url;
+		List <String>list=new ArrayList<String>();
+		try {
+			connection=JDBCTool.getConnection();
+			pres=connection.prepareCall(sql);
+			pres.setString(1, goodsId);
+			ResultSet result=pres.executeQuery();
+			while(result.next()){
+				image_url=result.getString("photo_url");
+				list.add(image_url);
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	/**
+	 * ’“ ”∆µ
+	 */
+	public String findVedio(String goodsId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

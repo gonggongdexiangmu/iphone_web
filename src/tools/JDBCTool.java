@@ -15,10 +15,11 @@ public class JDBCTool {
 	public static Connection getConnection() throws IOException, ClassNotFoundException, SQLException{
 		Properties properties=new Properties();
 		
-		properties.load(JDBCTool.class.getClassLoader().getResourceAsStream("classpath:db.properties"));
+		properties.load(JDBCTool.class.getClassLoader().getResourceAsStream("db.properties"));
 		Class.forName(properties.getProperty("driver"));
 		Connection connection=DriverManager.getConnection(properties.getProperty("url"),properties.getProperty("username"),
 				properties.getProperty("pwd"));
+		System.out.println(connection);
 		return connection;
 	}
 	/**

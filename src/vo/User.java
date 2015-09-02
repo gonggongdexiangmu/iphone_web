@@ -1,10 +1,13 @@
 package vo;
+
+import java.io.Serializable;
+
 /**
  * 
  * ”√ªß
  *
  */
-public class User {
+public class User implements Serializable{
 	private String userip_id;
 	private String userip_name;
 	private String userip_realname;

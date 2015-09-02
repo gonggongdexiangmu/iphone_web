@@ -1,14 +1,17 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.impl.IndexDaoImp;
 import service.LoginService;
 import service.impl.LoginServiceImpl;
+import vo.Goods;
 import vo.User;
 
 public class AllServlet extends HttpServlet {
@@ -39,7 +42,23 @@ public class AllServlet extends HttpServlet {
 			request.setAttribute("erro","您输入的账号或密码错误,请核对后重新输入");
 			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 			
-		}else if("/shouye".equals(str)){//主页
+		}
+		/**
+		 * 
+		 * 主页业务实现
+		 * 
+		**/
+		else if("/index".equals(str)){
+			IndexDaoImp in=new IndexDaoImp();
+			List <Goods>list=in.findAll();
+			
+			request.setAttribute("allGoods", list);
+			
+			
+			
+			
+			
+
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else if("/zhuce".equals(str)){//注册
 			User user=new User();

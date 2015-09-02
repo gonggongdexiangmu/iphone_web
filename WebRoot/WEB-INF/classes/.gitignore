@@ -1,10 +1,2 @@
-/connection.properties
-/dao
-/filter
-/service
-/servlet
-/tools
-/vo
-/xxx.sql
 /test
-/db.properties
+/dao

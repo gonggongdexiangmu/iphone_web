@@ -1,12 +1,10 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8" contentType="text/html;charset=utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<!doctype html>
+<%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<meta charset="utf-8">
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>无标题文档</title>
@@ -61,27 +59,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
     </div>
 </div>
-<!--产品1-->
+<!--产品1        ${allGoods.goods_ishead}?style1:'';-->
 <div class="main_cnt">
 <ul>
-    <li class="style1">
-    <a hidefocus="true" title="这里是文字" class="aLink imgbox" href="" target="_blank"><img src="">
+	<c:forEach items="allGoods" var="allGoods">
+    <li class="">
+    <a hidefocus="true" title="这里是文字" class="aLink imgbox" href="" target="_blank"><img src="${allGoods.pohto_url}">
     </a>
         <div class="h_mask">
         <a hidefocus="true" href="" target="_blank"></a></div>
         <div class="txt">
             <h2>
-            <a hidefocus="true" title="" target="_blank" class="aTitle" href="">标题</a>
+            <a hidefocus="true" title="" target="_blank" class="aTitle" href="">${allGoods.goods_name}</a>
             </h2>
             <div class="label_box tags">
-            <span>文字</span>
-            <span>文字</span>
-            <span>文字</span>
+             <span>${allGoods.label_id}</span>
+            <span>${allGoods.zan}</span></br>
+            <span>${allGoods.goods_text}</span>
+            
             </div>
         </div>
     </li>
+    </c:forEach>
     			
-			<li class="">
+			 <!--<li class="">
 				<a hidefocus="true" title="" class="aLink imgbox" href="" target="_blank"><img src="">
                 </a>
 					<div class="h_mask">
@@ -104,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			
 			
-			<li class="">
+			 <li class="">
 				<a hidefocus="true" title="标题" class="aLink imgbox" href="" target="_blank"><img src=""></a>
 					<div class="h_mask">
                     <a hidefocus="true" href="" target="_blank"></a></div>
@@ -1126,7 +1127,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 				
 				</div>
-			</li></ul>
+			</li>-->
+			</ul>
  
             
 		<div class="page-bar"><a href="#" class="pre-btn"></a><a href="#" class="">1</a><a href="#" class="">2</a><a href="#" class="">3</a><a href="#" class="active">4</a><a href="#" class="">5</a><a href="#" class="">6</a><a href="#" class="next-btn"></a></div>
