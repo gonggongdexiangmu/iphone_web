@@ -11,7 +11,7 @@ public class Goods implements Serializable{
 	String label_id;//标签id
 	String zan;//点赞次数
 	String goods_text;//描述文本
-	boolean goods_ishead;//是否放在头部
+	String goods_ishead;//是否放在头部
 	String goods_state;//状态所属
 	String pohto_url;//图片路径
 	String video_url;//视频路径
@@ -53,10 +53,11 @@ public class Goods implements Serializable{
 		this.goods_text = goods_text;
 	}
 	
-	public boolean isGoods_ishead() {
+	
+	public String getGoods_ishead() {
 		return goods_ishead;
 	}
-	public void setGoods_ishead(boolean goods_ishead) {
+	public void setGoods_ishead(String goods_ishead) {
 		this.goods_ishead = goods_ishead;
 	}
 	public String getGoods_state() {

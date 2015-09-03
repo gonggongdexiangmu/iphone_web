@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.impl.IndexDaoImp;
 import service.LoginService;
@@ -23,8 +24,8 @@ public class AllServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html");
 		
+		response.setContentType("text/html;charset=utf-8");
 		
 		
 		LoginService loginService=new LoginServiceImpl();
@@ -50,16 +51,16 @@ public class AllServlet extends HttpServlet {
 		**/
 		else if("/index".equals(str)){
 			IndexDaoImp in=new IndexDaoImp();
-			List <Goods>list=in.findAll();
-			
+			List <Goods>list=in.findAll();//¼ì²â1Õý³£
+//			for(Goods s:list){
+//				System.out.println(s.getGoods_ishead());
+//			}
 			request.setAttribute("allGoods", list);
 			
-			
-			
-			
-			
-
 			request.getRequestDispatcher("index.jsp").forward(request, response);
+			
+			
+			
 		}else if("/zhuce".equals(str)){//×¢²á
 			User user=new User();
 			loginService.saveUser(user);

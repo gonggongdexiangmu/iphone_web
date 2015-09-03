@@ -19,7 +19,7 @@ public class JDBCTool {
 		Class.forName(properties.getProperty("driver"));
 		Connection connection=DriverManager.getConnection(properties.getProperty("url"),properties.getProperty("username"),
 				properties.getProperty("pwd"));
-		System.out.println(connection);
+		
 		return connection;
 	}
 	/**

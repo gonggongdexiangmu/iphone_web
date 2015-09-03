@@ -5,9 +5,8 @@
 <html>
 <head>
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>无标题文档</title>
+
+
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -40,7 +39,7 @@
 <!--banner-->
 <div class="banner">
      <div class="slider">
-             <ul class="viewport">aa
+             <ul class="viewport">
              <li o="0" index="0" style="left: 1060px;">
              <a target="_blank" href="" hidefocus="true"><img src="">
              </a>
@@ -59,14 +58,13 @@
                 </div>
     </div>
 </div>
-<!--产品1        ${allGoods.goods_ishead}?style1:'';-->
+
 <div class="main_cnt">
 <ul>
-	<c:forEach items="allGoods" var="allGoods">
-    <li class="">
-    <a hidefocus="true" title="这里是文字" class="aLink imgbox" href="" target="_blank"><img src="${allGoods.pohto_url}">
-    </a>
-        <div class="h_mask">
+	<c:forEach items="${allGoods}" var="allGoods">
+		<c:if test="${allGoods.goods_ishead=='y'}">
+    		<li class="style1"><a hidefocus="true" title="这里是文字" class="aLink imgbox" href="" target="_blank"><img src="${allGoods.pohto_url}">
+    </a><div class="h_mask">
         <a hidefocus="true" href="" target="_blank"></a></div>
         <div class="txt">
             <h2>
@@ -78,8 +76,27 @@
             <span>${allGoods.goods_text}</span>
             
             </div>
-        </div>
-    </li>
+        </div></li>
+    	</c:if>
+    	<c:if test="${allGoods.goods_ishead=='n'}">
+    		<li class=""><a hidefocus="true" title="这里是文字" class="aLink imgbox" href="" target="_blank"><img src="${allGoods.pohto_url}">
+    </a><div class="h_mask">
+        <a hidefocus="true" href="" target="_blank"></a></div>
+        <div class="txt">
+            <h2>
+            <a hidefocus="true" title="" target="_blank" class="aTitle" href="">${allGoods.goods_name}</a>
+            </h2>
+            <div class="label_box tags">
+             <span>${allGoods.label_id}</span>
+            <span>${allGoods.zan}</span></br>
+            <span>${allGoods.goods_text}</span>
+            
+            </div>
+        </div></li>
+    	</c:if>
+    
+        
+    
     </c:forEach>
     			
 			 <!--<li class="">

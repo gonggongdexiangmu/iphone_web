@@ -34,13 +34,10 @@ public class IndexDaoImp implements IndexDao{
 				g.setGoods_name(result.getString("goods_name"));
 				g.setGoods_text(result.getString("goods_text"));
 				g.setCreate_time(result.getString("create_time"));
-				String h=result.getString("goods_ishead");
-				if("y".equals(h)){
-					g.setGoods_ishead(true);
-					
-				}else if("n".equals(h)){
-					g.setGoods_ishead(false);
-				}
+			
+				g.setGoods_ishead(result.getString("goods_ishead"));
+				
+				
 				g.setGoods_state(result.getString("goods_state"));
 				g.setZan(result.getString("zan"));
 				String labelid=result.getString("label_id");
