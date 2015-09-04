@@ -12,8 +12,8 @@ public class TestCase {
 	public static void main(String[] args) {
 		
 		IndexDaoImp in=new IndexDaoImp();
-		List <Goods>list=in.findAll();
-		System.out.println(list.size());
+		//List <Goods>list=in.findAll();
+		//System.out.println(list.size());
 		
 	}
 }

@@ -15,16 +15,26 @@ import vo.Goods;
 import dao.IndexDao;
 
 public class IndexDaoImp implements IndexDao{
-
-	public List findAll() {
-		String sql="select * from goods";
+	int pageSize=5;;
+	public List findAll(int page,String kind) {
+		if(page==0){
+			page=1;
+		}
+		String sql="select * from goods where goods_state=? limit ?,?";
 		Connection connection=null;
 		String labelName=null;
 		List <Goods>Goodslist=new ArrayList<Goods>();
-		 
+		
+		
+		int begin=pageSize*(page-1);//0,5,
+		
+		
 		try {
 			connection=JDBCTool.getConnection();
 			PreparedStatement pres=connection.prepareStatement(sql);
+			pres.setString(1, kind);
+			pres.setInt(2, begin);
+			pres.setInt(3, pageSize);
 			ResultSet result=pres.executeQuery();
 			
 			while(result.next()){
@@ -50,8 +60,12 @@ public class IndexDaoImp implements IndexDao{
 				g.setLabel_id(labelName);
 				//首页图片路径处理
 				List <String>list=findImageUrl(result.getString("goods_id"));
-				
-				g.setPohto_url(list.get(0));
+				if(list.size()==0){//说明商品没有图片--做异常处理
+					
+				}else{
+					
+					g.setPohto_url(list.get(0));
+				}
 				
 				Goodslist.add(g);
 				
@@ -99,7 +113,7 @@ public class IndexDaoImp implements IndexDao{
 		List <String>list=new ArrayList<String>();
 		try {
 			connection=JDBCTool.getConnection();
-			pres=connection.prepareCall(sql);
+			pres=connection.prepareStatement(sql);
 			pres.setString(1, goodsId);
 			ResultSet result=pres.executeQuery();
 			while(result.next()){
@@ -121,6 +135,39 @@ public class IndexDaoImp implements IndexDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	/**
+	 * 计算最大页
+	 */
+	public int findCount(String kind) {
+		String sql="select count(*) from goods where goods_state=?";
+		Connection connection=null;
+		PreparedStatement pres;
+		ResultSet result;
+		int totleSize = 0;
+		int pages;
+		try {
+			connection=JDBCTool.getConnection();
+			pres=connection.prepareStatement(sql);
+			pres.setString(1, kind);
+			result=pres.executeQuery();
+			result.next();
+			totleSize=result.getInt(1);
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(totleSize%pageSize==0){
+			return totleSize/pageSize;
+			
+		}else{
+			return totleSize/pageSize+1;
+		}
+		
+		
+	}
+	
 	
 
 }

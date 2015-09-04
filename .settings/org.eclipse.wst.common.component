@@ -2,8 +2,8 @@
     <wb-module deploy-name="ipaddemo">
         <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="/ipaddemo"/>
         <property name="java-output-path" value="/ipaddemo/WebRoot/WEB-INF/classes"/>
         <property name="me-merge-utility-modules" value="true"/>
+        <property name="context-root" value="/iphone_web"/>
     </wb-module>
 </project-modules>

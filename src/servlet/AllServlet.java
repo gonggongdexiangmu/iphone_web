@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -51,10 +52,46 @@ public class AllServlet extends HttpServlet {
 		**/
 		else if("/index".equals(str)){
 			IndexDaoImp in=new IndexDaoImp();
-			List <Goods>list=in.findAll();//检测1正常
-//			for(Goods s:list){
-//				System.out.println(s.getGoods_ishead());
-//			}
+			List <Integer>CountList=new ArrayList<Integer>();
+			List <Goods>list;
+			String s=request.getParameter("id");
+			String kind=request.getParameter("name");
+			String ids = null;
+			if(kind==null){		
+				kind="科技新品";
+			}else{
+			kind=new String(kind.getBytes("ISO-8859-1"),"UTF-8");
+			kind=kind.replace("'", "");		
+			}
+		
+			if("科技新品".equals(kind)){
+				ids="1";
+			}else if("体验评测".equals(kind)){
+				ids="2";
+			}else if("科技三分钟".equals(kind)){
+				ids="3";
+			}else if("试用".equals(kind)){
+				ids="4";
+			}
+			
+			int page;
+			if(s==null){
+				page=1;
+				list=in.findAll(page,kind);
+			}else{
+				 page=Integer.valueOf(s);
+				list=in.findAll(page,kind);//检测1正常	
+			}
+			
+			int count=in.findCount(kind);//最大页
+			for(int i=1;i<=count;i++){
+				CountList.add(i);
+				
+			}
+			
+			request.setAttribute("ids", ids);
+			request.setAttribute("page", page);
+			request.setAttribute("CountList", CountList);
 			request.setAttribute("allGoods", list);
 			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
