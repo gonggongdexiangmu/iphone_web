@@ -12,7 +12,7 @@ create table userip(
 insert into userip value('11111','luowei','罗威','112345','1','sz11111');
 --查询--------------------------------------------------------------------------
 select * from userip
-
+update userip set userip_name='luowei@126.com'
 
 
 --物品表
@@ -125,5 +125,10 @@ delete from photo where photo_id='p37777'
 select l.label_name from goods g left join label l on g.label_id=l.label_id where g.label_id='1'
 
 select count(*) from goods where goods_state='新品'
+
+
+
+
+
 
 

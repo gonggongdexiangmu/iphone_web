@@ -4,11 +4,10 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-
 <!DOCTYPE html>
 <!-- saved from url=(0038)http://v3.bootcss.com/examples/signin/ -->
-<html lang="zh-CN"><head>
-   
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -38,19 +37,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" action="login.do" method="post">
         <h2 class="form-signin-heading">请登录</h2>
         <label for="inputEmail" class="sr-only">输入邮箱</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="输入邮箱" required autofocus>
-        <label for="inputPassword" class="sr-only">密码</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <input type="email" name="inputEmail" class="form-control" placeholder="输入邮箱" required autofocus><span>${msg}</span>
+        <label for="inputPassword" class="sr-only">密码 </label>
+        <input type="password" name="inputPassword" class="form-control" placeholder="密码" required><span>${msg}</span>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> 记住我
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-        <button class="btn btn-lg btn-primary btn-block" type="submit"><a href="sigin.jsp">注册</a></button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"><a href="sigin.html">注册</a></button>
       </form>
 
     </div> <!-- /container -->

@@ -14,7 +14,7 @@ public class UserDaoImpl implements UserDao{
 
 	public User findUserByUserName(String username) {
 		User user=null;
-		String sql="";
+		String sql="select * from userip where userip_name=?";
 		Connection connection=null;
 		try {
 			connection=JDBCTool.getConnection();
@@ -23,11 +23,12 @@ public class UserDaoImpl implements UserDao{
 			ResultSet resultSet=prepareStatement.executeQuery();
 			if(resultSet.next()){
 				user=new User();
-				user.setUserip_name(resultSet.getString("name"));
-				user.setUserip_pwd(resultSet.getString("pwd"));
-				user.setUserip_realname(resultSet.getString("loginname"));
-				//user.setRole(resultSet.getString("role"));
-				//user.setUuid(resultSet.getString("uuid"));
+				user.setUserip_name(resultSet.getString("userip_name"));
+				user.setUserip_pwd(resultSet.getString("userip_pwd"));
+				user.setUserip_realname(resultSet.getString("userip_realname"));
+				user.setUserip_id(resultSet.getString("userip_id"));
+				user.setUserip_right(resultSet.getString("userip_right"));
+				user.setCollections_id(resultSet.getString("collections_id"));
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

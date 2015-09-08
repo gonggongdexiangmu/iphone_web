@@ -30,20 +30,36 @@ public class AllServlet extends HttpServlet {
 		
 		
 		LoginService loginService=new LoginServiceImpl();
+		HttpSession session = request.getSession();
 		//截取浏览器地址
 		String str=request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/"), request.getRequestURI().lastIndexOf("."));
 		//登陆
 		if("/login".equals(str)){
-			String username=request.getParameter("username");
-			String pwd=request.getParameter("pwd");
-			User user=loginService.findUserByUserName(username);
-			if(user!=null&&pwd.equals(user)){
-				response.sendRedirect("/WEB-INF/jsp/chenggong.jsp");
-				return ;
-			}
-			request.setAttribute("erro","您输入的账号或密码错误,请核对后重新输入");
-			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+			String username=request.getParameter("inputEmail");
+			String pwd=request.getParameter("inputPassword");
 			
+			
+			String info=loginService.findUserByUserName(username, pwd);
+			String mages=null;
+			if("0".equals(info)){//用户名为空
+				
+				mages="用户名不存在";
+				request.setAttribute("msg", mages);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}else if("1".equals(info)){//密码错误
+				
+				mages="密码错误";
+				request.setAttribute("msg", mages);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}else if("2".equals(info)){//可用
+				
+				User user=loginService.finUser(username);
+				mages=" ";
+				request.setAttribute("msg", mages);
+				session.setAttribute("user", user);
+				request.getRequestDispatcher("index.do").forward(request, response);
+			}
+						
 		}
 		/**
 		 * 
